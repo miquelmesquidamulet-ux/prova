@@ -1,0 +1,12 @@
+{
+  "name": "filon",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Filón: idle/tycoon de minería para móvil (versión web)",
+  "type": "module",
+  "scripts": {
+    "start": "npx http-server . -p 8080 -c-1",
+    "test": "node --test \"tests/**/*.test.js\"",
+    "sim": "node tools/simulate.js"
+  }
+}
