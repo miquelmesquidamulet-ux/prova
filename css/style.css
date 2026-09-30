@@ -467,6 +467,7 @@ button:disabled { cursor: default; }
 
 /* ------------------------------------------------------------- animaciones */
 
+@keyframes tap { 0%, 100% { margin-top: 0; } 50% { margin-top: -10px; } }
 @keyframes swing { from { transform: rotate(-30deg); } to { transform: rotate(25deg); } }
 @keyframes drive { from { left: 0; } to { left: calc(100% - 2rem); } }
 @keyframes blink { from { opacity: 0.4; } to { opacity: 1; } }
@@ -482,4 +483,30 @@ button:disabled { cursor: default; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.001s !important; animation-iteration-count: 1 !important; }
+}
+
+/* ------------------------------------------------------------- tutorial */
+
+.tutorial { position: fixed; inset: 0; pointer-events: none; z-index: 35; }
+.tutorial-finger {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 2.2rem;
+  filter: drop-shadow(0 2px 4px #000a);
+  transition: transform 0.25s ease-out;
+  animation: tap 0.9s ease-in-out infinite;
+}
+.tutorial-bubble {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: #fff;
+  color: #1c1917;
+  font-weight: 800;
+  text-align: center;
+  border-radius: 14px;
+  padding: 8px 12px;
+  box-shadow: 0 4px 16px #0008;
+  transition: transform 0.25s ease-out;
 }

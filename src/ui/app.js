@@ -12,6 +12,7 @@ import { zoneRates, zoneStatus, totalIncome } from '../core/production.js';
 import * as act from '../core/actions.js';
 import { collectOffline } from '../core/offline.js';
 import { suggestUpgrade } from '../core/advisor.js';
+import { Tutorial } from './tutorial.js';
 import {
   formatMoney, formatMoneyRate, formatCost, formatRate, formatDuration, formatNumber,
 } from '../core/format.js';
@@ -47,6 +48,7 @@ export class App {
     this.offlinePending = false;
     this.highlight = null;
     this.buildShell();
+    this.tutorial = new Tutorial(this);
   }
 
   get state() {
@@ -159,6 +161,7 @@ export class App {
 
     this.update?.(now);
     this.updateGoal(now);
+    this.tutorial.update(now);
   }
 
   buildZoneView(def, status) {
