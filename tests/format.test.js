@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  formatNumber, formatMoney, formatCost, formatRate, formatDuration, suffixFor,
+  formatNumber, formatMoney, formatMoneyRate, formatCost, formatRate, formatDuration, suffixFor,
 } from '../src/core/format.js';
 
 test('hasta 999.999 se muestra completo con punto de miles', () => {
@@ -41,6 +41,7 @@ test('ritmos con un decimal cuando son pequeños', () => {
   assert.equal(formatRate(3), '3');
   assert.equal(formatRate(0.25), '0,2');
   assert.equal(formatRate(1234), '1.234');
+  assert.equal(formatMoneyRate(1.5), '$1,5');
 });
 
 test('duraciones legibles', () => {

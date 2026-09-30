@@ -55,6 +55,11 @@ export function formatRate(n) {
   return formatNumber(n);
 }
 
+// Ingresos por segundo: «$1,5», «$42.350».
+export function formatMoneyRate(n) {
+  return '$' + formatRate(n);
+}
+
 // Duraciones: «12 s», «4 min 12 s», «6 h 12 min», «2 d 3 h».
 export function formatDuration(seconds) {
   if (!Number.isFinite(seconds)) return '∞';

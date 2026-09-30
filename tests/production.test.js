@@ -141,3 +141,18 @@ test('tocar el frente da +50 % durante 5 s', () => {
   assert.equal(zoneRates(s.zones.quarry, quarry, T0 + 4000).extraction, 1.5);
   assert.equal(zoneRates(s.zones.quarry, quarry, T0 + 5000).extraction, 1);
 });
+
+test('el asesor sugiere una mejora asequible que sube los ingresos', async () => {
+  const { suggestUpgrade } = await import('../src/core/advisor.js');
+  const s = createGameState(T0);
+  assert.equal(suggestUpgrade(s, T0), null, 'sin dinero no hay sugerencia');
+  s.coins = 10;
+  const sug = suggestUpgrade(s, T0);
+  assert.equal(sug.kind, 'tool');
+  assert.equal(sug.station, 'front');
+  // Con el transporte como cuello de botella, sugiere el transporte.
+  s.zones.quarry.tool = 5;
+  s.zones.quarry.workers = 2;
+  s.coins = 30;
+  assert.equal(suggestUpgrade(s, T0).kind, 'transport');
+});
